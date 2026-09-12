@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FixMyCar AI</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0f14;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 7%;
+      border-bottom: 1px solid #222a33;
+      background: #0d1218;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ffb000;
+    }
+
+    .hero {
+      padding: 80px 7% 50px;
+      text-align: center;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #2a2110;
+      color: #ffbd2e;
+      border: 1px solid #6a4b00;
+      padding: 8px 16px;
+      border-radius: 30px;
+      margin-bottom: 25px;
+      font-size: 14px;
+    }
+
+    h1 {
+      font-size: 52px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: #19d3c5;
+    }
+
+    .subtitle {
+      color: #a9b3bf;
+      font-size: 20px;
+      line-height: 1.7;
+      max-width: 760px;
+      margin: 0 auto 35px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      border: none;
+      padding: 16px 28px;
+      border-radius: 12px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn-primary {
+      background: #ffad00;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .btn-secondary {
+      background: #171e27;
+      color: white;
+      border: 1px solid #2f3945;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .challenge {
+      background: #151b23;
+      border: 1px solid #2b3542;
+      border-radius: 18px;
+      padding: 22px;
+      margin: 40px auto;
+      max-width: 850px;
+    }
+
+    .challenge strong {
+      color: #ffb000;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1000px;
+      margin: 50px auto 80px;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #121820;
+      border: 1px solid #27313d;
+      border-radius: 18px;
+      padding: 28px;
+      text-align: center;
+    }
+
+    .card .icon {
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 21px;
+    }
+
+    .card p {
+      color: #98a4b2;
+      line-height: 1.6;
+    }
+
+    .form-section {
+      display: none;
+      max-width: 760px;
+      margin: 30px auto 80px;
+      background: #11171e;
+      border: 1px solid #26313d;
+      border-radius: 18px;
+      padding: 30px;
+    }
+
+    .form-section.active {
+      display: block;
+    }
+
+    .form-section h2 {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      color: #c6d0da;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 14px;
+      border-radius: 10px;
+      border: 1px solid #33404d;
+      background: #0b1016;
+      color: white;
+      font-size: 16px;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .result-box {
+      margin-top: 25px;
+      background: #0d1319;
+      border: 1px solid #2d3a47;
+      border-radius: 14px;
+      padding: 20px;
+      display: none;
+    }
+
+    .result-box.show {
+      display: block;
+    }
+
+    .result-box h3 {
+      color: #19d3c5;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6f7b87;
+      padding: 30px;
+      border-top: 1px solid #1f2730;
+    }
+
+    @media (max-width: 800px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">FixMyCar <span>AI</span> 🔧</div>
+    <div>רכב חכם. תיקון חכם.</div>
+  </header>
+
+  <section class="hero">
+    <div class="badge">⚡ אבחון ראשוני תוך שניות</div>
+
+    <h1>
+      צלם את הבעיה ברכב —
+      <span>ונעזור לך למצוא תיקון משתלם יותר</span>
+    </h1>
+
+    <p class="subtitle">
+      צלם את התקלה, ספר לנו מה קורה, וקבל כיוון ראשוני למה כדאי לבדוק,
+      מה טווח המחיר האפשרי, ואיך למצוא מוסך משתלם יותר.
+    </p>
+
+    <div class="buttons">
+      <button class="btn btn-primary" onclick="showProblemForm()">📸 צלם את הבעיה</button>
+      <button class="btn btn-secondary" onclick="showQuoteForm()">💰 כבר יש לי הצעת מחיר</button>
+    </div>
+
+    <div class="challenge">
+      🔥 <strong>הקאץ' שלנו:</strong>
+      קיבלת הצעת מחיר ממוסך? תעלה אותה — וננסה לעזור לך למצוא תיקון משתלם יותר.
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="card">
+      <div class="icon">📷</div>
+      <h3>צילום פשוט</h3>
+      <p>מעלים תמונה של הבעיה ברכב ומספרים בקצרה מה קרה.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧠</div>
+      <h3>כיוון ראשוני</h3>
+      <p>המערכת מציגה אפשרויות שכדאי לבדוק — בלי להעמיד פנים שזה אבחון ודאי.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">💸</div>
+      <h3>תיקון משתלם יותר</h3>
+      <p>בעתיד נשווה בין מוסכים לפי מחיר, דירוג ומיקום כדי לעזור לך לחסוך.</p>
+    </div>
+  </section>
+
+  <section id="problemForm" class="form-section">
+    <h2>📸 ספר לנו מה הבעיה ברכב</h2>
+
+    <label>העלה תמונה</label>
+    <input type="file" accept="image/*">
+
+    <label>מה קרה?</label>
+    <textarea placeholder="לדוגמה: יש רעש בזמן בלימה, נדלקה נורה, משהו נשבר..."></textarea>
+
+    <label>יצרן הרכב</label>
+    <input type="text" placeholder="לדוגמה: Toyota">
+
+    <label>דגם</label>
+    <input type="text" placeholder="לדוגמה: Corolla">
+
+    <label>שנה</label>
+    <input type="number" placeholder="2020">
+
+    <button class="btn btn-primary" style="margin-top:20px;" onclick="fakeAnalyze()">
+      נתחיל לבדוק את הבעיה
+    </button>
+
+    <div id="problemResult" class="result-box">
+      <h3>תוצאה לדוגמה</h3>
+      <p>
+        לפי המידע שסיפקת, כדאי לבדוק קודם את מערכת הבלמים והחלקים הסמוכים.
+        טווח מחיר אפשרי לתיקון: 350–900 ₪, בהתאם לסוג התקלה.
+      </p>
+      <p style="margin-top:10px; color:#98a4b2;">
+        זהו כיוון ראשוני בלבד ואינו מחליף בדיקה מקצועית במוסך.
+      </p>
+    </div>
+  </section>
+
+  <section id="quoteForm" class="form-section">
+    <h2>💰 יש לך כבר הצעת מחיר?</h2>
+
+    <label>העלה צילום של הצעת המחיר</label>
+    <input type="file" accept="image/*">
+
+    <label>מה המחיר שקיבלת?</label>
+    <input type="number" placeholder="לדוגמה: 1800">
+
+    <label>מה סוג התיקון?</label>
+    <input type="text" placeholder="לדוגמה: החלפת בלמים">
+
+    <label>דגם הרכב</label>
+    <input type="text" placeholder="לדוגמה: Mazda 3">
+
+    <button class="btn btn-primary" style="margin-top:20px;" onclick="fakeQuoteCheck()">
+      🔥 נסה למצוא לי תיקון משתלם יותר
+    </button>
+
+    <div id="quoteResult" class="result-box">
+      <h3>בדיקת הצעת מחיר</h3>
+      <p>
+        לפי הדוגמה, המחיר שהזנת נמצא בטווח בינוני–גבוה.
+        ייתכן שקיימות הצעות משתלמות יותר אצל מוסכים אחרים.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    FixMyCar AI — מערכת עזר ראשונית בלבד. אין להסתמך עליה כאבחון מכני מקצועי.
+  </footer>
+
+  <script>
+    function showProblemForm() {
+      document.getElementById('quoteForm').classList.remove('active');
+      document.getElementById('problemForm').classList.add('active');
+      document.getElementById('problemForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showQuoteForm() {
+      document.getElementById('problemForm').classList.remove('active');
+      document.getElementById('quoteForm').classList.add('active');
+      document.getElementById('quoteForm').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function fakeAnalyze() {
+      document.getElementById('problemResult').classList.add('show');
+    }
+
+    function fakeQuoteCheck() {
+      document.getElementById('quoteResult').classList.add('show');
+    }
+  </script>
+
+</body>
+</html>
